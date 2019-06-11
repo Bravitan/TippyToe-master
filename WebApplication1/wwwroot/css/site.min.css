@@ -1,0 +1,38 @@
+body{padding-top:50px;padding-bottom:20px}
+
+.gray {
+    background: #f2f2f2 none repeat scroll 0 0;
+    float: left;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    width: 100%;
+    margin-top: 50px;
+}
+.body-content {
+    background: #f2f2f2 none repeat scroll 0 0;
+    float: left;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    width: 100%;
+    margin-top: 50px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.carousel-caption p{font-size:20px;line-height:1.4}
+
+.carousel-inner .item img[src$=".svg"] {
+    background: #f2f2f2 none repeat scroll 0 0;
+    float: left;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#qrCode{margin:15px}
+
+@media screen and (max-width:767px)
+
+ {.carousel-caption{display:none}}
