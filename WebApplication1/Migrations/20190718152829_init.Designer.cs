@@ -11,8 +11,8 @@ using TippyToe.Models;
 namespace TippyToe.Migrations
 {
     [DbContext(typeof(TippyToeContext))]
-    [Migration("20190528163708_MyShoes")]
-    partial class MyShoes
+    [Migration("20190718152829_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,24 @@ namespace TippyToe.Migrations
                     b.HasIndex("ShoesId");
 
                     b.ToTable("Size");
+                });
+
+            modelBuilder.Entity("TippyToe.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.Property<string>("Username")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("TippyToe.Models.Color", b =>

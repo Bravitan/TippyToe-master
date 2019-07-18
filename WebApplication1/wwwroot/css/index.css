@@ -1,8 +1,11 @@
 ﻿
+body{
+    background-color:rgba(0,0,0,0.2);
 
+}
 
 * {
-    font-family: Ariel;
+    font-family: Arial;
     box-sizing: border-box;
 }
 
@@ -26,8 +29,8 @@
     }
 
     .price .header {
-        background-color: #edd5d5;
-        color: #726867;
+        background-color: #4e82a4;
+        color: #eee;
         font-size: 24px;
     }
 
@@ -38,9 +41,9 @@
     }
 
     .price .grey {
-        background-color: #f6e4e3;
+        background-color: #6b99b7;
         font-size: 16px;
-        color: #a1928c;
+        color: #eee;
     }
 
 .button {

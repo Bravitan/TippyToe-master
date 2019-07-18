@@ -118,6 +118,24 @@ namespace TippyToe.Migrations
                     b.ToTable("Size");
                 });
 
+            modelBuilder.Entity("TippyToe.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.Property<string>("Username")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("TippyToe.Models.Color", b =>
                 {
                     b.HasOne("TippyToe.Models.Shoes")
