@@ -11,6 +11,7 @@ namespace TippyToe.Models
         public string Gender { get; set; }
         public double Price { get; set; }
         public string Style { get; set; }
+        //public char Image { get; set; }
         public ICollection <Color> Color { get; set; }
         public ICollection<Size> Size { get; set; }
         public ICollection<OrderShoes> OrderShoes { get; set; }

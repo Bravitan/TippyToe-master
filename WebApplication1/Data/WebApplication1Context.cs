@@ -18,6 +18,7 @@ namespace TippyToe.Models
         public DbSet<TippyToe.Models.Orders> Orders { get; set; }
         public DbSet<TippyToe.Models.Customer> Customer { get; set; }
         public DbSet<TippyToe.Models.OrderShoes> OrderShoes { get; set; }
+        public DbSet<TippyToe.Models.User> User { get; set; }
 
     }
 }

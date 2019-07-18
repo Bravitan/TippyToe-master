@@ -3,5 +3,40 @@
     ViewData["Title"] = "Women";
 }
 
-<h2>Women</h2>
 
+@section Styles{
+    <link rel="stylesheet" href="~/css/index.css" />
+
+}
+
+
+
+@*
+
+    <div class="container">
+        <br />
+        <div class="row text-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="columns">
+                        <img src="@item.ImageUri" style="width:300px; height:200px" />
+                        <p id="item">
+                            <br />
+                            <strong> @item.NameDose </strong>
+                            <br />
+                            @item.Description
+                            <br />
+                            <div hidden> @item.Description</div>
+                            <span> @item.Price</span>
+                            @{
+
+                            }
+                            @if(Session["User]!=null){}
+                            </p>
+                            </div>
+                            </div>
+                            }
+                            </div>
+                            </div>
+                            *@

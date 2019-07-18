@@ -42,7 +42,7 @@
                             <li><a href="#">Boots</a></li>
                             <li><a href="#">Flats</a></li>
                             <li><a href="#">Sneakers</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Women" class="navbar-brand">View All...</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Women">View All...</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -56,11 +56,11 @@
                             <li><a href="#">Shoes</a></li>
                             <li><a href="#">Sneakers</a></li>
                             <li><a href="#">Boots</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Men" class="navbar-brand">View All...</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Men">View All...</a></li>
                         </ul>
                     </li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="FAQs">FAQs</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">Visit us</a></li>
                 </ul>
                 <form class="navbar-form navbar-left" action="/action_page.php">
                     <div class="input-group">
@@ -75,7 +75,7 @@
             </div>
         </div>
     </nav>
-    <nav >
+    <nav>
         <div class="container body-content">
             @RenderBody()
             <hr />
@@ -182,3 +182,4 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+

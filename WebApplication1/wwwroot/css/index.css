@@ -1,4 +1,8 @@
-﻿* {
+﻿
+
+
+* {
+    font-family: Ariel;
     box-sizing: border-box;
 }
 
@@ -22,8 +26,8 @@
     }
 
     .price .header {
-        background-color: #7792ca;
-        color: #e9eef6;
+        background-color: #edd5d5;
+        color: #726867;
         font-size: 24px;
     }
 
@@ -34,9 +38,9 @@
     }
 
     .price .grey {
-        color: #3f77eb;
-        background-color: #c3d1ef;
+        background-color: #f6e4e3;
         font-size: 16px;
+        color: #a1928c;
     }
 
 .button {

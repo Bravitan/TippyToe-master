@@ -29,6 +29,19 @@ namespace TippyToe.Controllers
             return View();
         }
 
+        public IActionResult Men()
+        {
+            ViewData["Message"] = "Men";
+
+            return View();
+        }
+            
+        public IActionResult Women()
+        {
+            ViewData["Message"] = "Women";
+
+            return View();
+        }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
