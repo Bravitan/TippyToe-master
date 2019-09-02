@@ -6053,7 +6053,7 @@ button.close {
   left: 50%;
   margin-left: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #000;
+  border-top-color: #a94442;
 }
 .tooltip.top-left .tooltip-arrow {
   right: 5px;
