@@ -11,9 +11,10 @@ using TippyToe.Models;
 namespace TippyToe.Migrations
 {
     [DbContext(typeof(TippyToeContext))]
-    partial class TippyToeContextModelSnapshot : ModelSnapshot
+    [Migration("20190909155921_Shoes")]
+    partial class Shoes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

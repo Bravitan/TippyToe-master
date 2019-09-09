@@ -53,7 +53,7 @@ namespace TippyToe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Gender,Price,Style,Image")] Shoes shoes)
+        public async Task<IActionResult> Create([Bind("Id,Gender,Price,Style,Image,Color,Size")] Shoes shoes)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace TippyToe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Gender,Price,Style,Image")] Shoes shoes)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Gender,Price,Style,Image,Color,Size")] Shoes shoes)
         {
             if (id != shoes.Id)
             {
