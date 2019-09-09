@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TippyToe.Models.Shoes>
 
 @{
     ViewData["Title"] = "Men";
@@ -9,105 +9,35 @@
     <link rel="stylesheet" href="~/css/index.css" />
 }
 
+<div class="container">
+    <div class="row">
+        </br>
+        <div class="col-sm-10">
+            <div class="row">
 
-<body>
-
-
-    <div class="container">
-        <div class="row">
-            </br>
-            <div class="col-sm-2">
-
-                <div class="row-sm-2" class="columns" padding-top='300dp'>
-                    <ul class="price">
-                        <li class="header"> gender </li>
-                        <li> men </li>
-                        <li> women </li>
-                    </ul>
-                </div>
-
-                <div class="row-sm-1" class="columns" padding-top='300dp'>
-                    <ul class="price">
-                        <li class="header"> color </li>
-                        <li> black </li>
-                        <li> blue </li>
-                        <li> white </li>
-                        <li> red </li>
-                        <li> pink </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="col-sm-10">
-
-                <div class="row">
-
+                @foreach (var item in Model)
+                {
                     <div class="col-sm-3" class="columns" padding-top='300dp'>
                         <ul class="price">
-                            <li class="header"> sport </li>
-                            <li class="grey">$ 59.99 / </li>
-                            <img src="~/images/women/sport/sport.jpg">
+                            <li class="header">    @item.Style  </li>
+                            <li class="grey">   @item.Price₪   </li>
+                            <img src="@item.Image" style="width: 300px; height: 200px" />
                             <li class="grey"><a href="#" class="button">Add</a></li>
                         </ul>
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+
                     </div>
 
-                    <div class="col-sm-3" class="columns" padding-top='300dp'>
-                        <ul class="price">
-                            <li class="header"> boots </li>
-                            <li class="grey">$ 79.99 / </li>
-                            <img src="~/images/men/boots/boots4.jpg">
-                            <li class="grey"><a href="#" class="button">Add</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-3" class="columns" padding-top='300dp'>
-                        <ul class="price">
-                            <li class="header"> elegant </li>
-                            <li class="grey">$ 99.99 / </li>
-                            <img src="~/images/men/elegant/elegant4.jpg">
-                            <li class="grey"><a href="#" class="button">Add</a></li>
-                        </ul>
-                    </div>
-
-
-                </div>
-
-
-                <div class="row">
-
-                    <div class="col-sm-3" class="columns" padding-top='300dp'>
-                        <ul class="price">
-                            <li class="header"> sport </li>
-                            <li class="grey">$ 129.99 / </li>
-                            <img src="~/images/men/sport/sport4.jpg">
-                            <li class="grey"><a href="#" class="button">Add</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-3" class="columns" padding-top='300dp'>
-                        <ul class="price">
-                            <li class="header"> elegant </li>
-                            <li class="grey">$ 99.99 / </li>
-                            <img src="~/images/men/elegant/elegant2.jpg">
-                            <li class="grey"><a href="#" class="button">Add</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-3" class="columns" padding-top='300dp'>
-                        <ul class="price">
-                            <li class="header"> sport </li>
-                            <li class="grey">$ 99.99 / </li>
-                            <img src="~/images/men/sport/sport.jpg">
-                            <li class="grey"><a href="#" class="button">Add</a></li>
-                        </ul>
-                    </div>
-                </div>
-
+                }
 
             </div>
         </div>
+
+        <div class="col-sm-2">
+
+        </div>
     </div>
-
-
-</body>
+</div>

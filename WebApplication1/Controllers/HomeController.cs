@@ -36,11 +36,11 @@ namespace TippyToe.Controllers
             return View();
         }
 
-        public  IActionResult Men()
+        public async Task<IActionResult> Men()
         {
             ViewData["Message"] = "Men";
 
-            return View();
+            return View(await _context.Shoes.ToListAsync());
         }
             
         public async Task<IActionResult> Women()
