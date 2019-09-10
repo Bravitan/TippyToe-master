@@ -31,10 +31,10 @@
                                 <ul class="price">
                                     <li class="header" style="background:#e28ede"> @item.Style </li>
                                     <li class="grey" style="background:#eda0e9"> @item.Price ₪ </li>
-                                    <img src="@item.Image" style="width: 300px; height: 200px" />
+                                    <img src="@item.Image" style="width: 210px; height: 200px" />
                                 </ul>
 
-                                <button data-id="@item.Id" class="passingID" data-toggle="modal" data-target="#myModal">Buy now</button>
+                                <button data-id="@item.Id" class="passingID" data-toggle="modal" data-target="#myModal"  style="background-color:lightpink">Buy now</button>
 
                                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id })|

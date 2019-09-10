@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<TippyToe.Models.Shoes>
-@*@{TippyToe.Controllers.ShoesController s = new TippyToe.Controllers.ShoesController();}*@
 
 @using Microsoft.AspNetCore.Identity;
 
@@ -11,10 +10,59 @@
 @section Styles{
     <link rel="stylesheet" href="~/css/index.css" />
 }
+<style>
+    /* Popup container - can be anything you want */
+    .popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        /* The actual popup */
+        .popup .popuptext {
+            visibility: hidden;
+            width: 260px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+        }
+
+            /* Popup arrow */
+            .popup .popuptext::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+
+        /* Toggle this class - hide and show the popup */
+        .popup .show {
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
+    /* Add animation (fade in the popup) */
+</style>
 
 <div class="container">
     <div class="row">
-        <br/>
+        <br />
         <div class="col-sm-2">
             <img alt="" class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="https://tpc.googlesyndication.com/daca_images/simgad/4515747431856294557">
         </div>
@@ -22,55 +70,23 @@
 
             <div class="row">
 
-
-                @*@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-
-
-        @foreach (var detail in s.HomeDetails)
-        {
-            @if (detail.BinaryPhoto != null)
-            {
-                var base64 = Convert.ToBase64String(detail.BinaryPhoto);
-                var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
-                <img src = '@imgsrc' style = "max-width:100px;max-height:100px" />
-                }
-             else {
-                <img src = "~/images/men/sport/sport4.jpg"
-                style = "max-width:100px;max-height:100px" />
-                @*this is default image in case ofnot inserted any image(file1) in index.cshtml *@
-               
-
-                @*@if (@detail.PathPhoto != null)
-          {
-            <img src = "@detail.PathPhoto" width = "100"  height = "100" />
-          }
-        else {
-            <img src = "~/images/men/sport/sport2.jpg"
-          style = "max-width:100px;max-height:100px" />
-          @*this is  default image in case ofnot inserted any image(file2) in index.cshtml *@
-                
-
                 @foreach (var item in Model)
                 {
-                   
                     <div class="col-sm-3" class="columns" padding-top='300dp'>
                         <ul class="price">
                             <li class="header">    @item.Style  </li>
                             <li class="grey">   @item.Price₪   </li>
-                            <img src="@item.Image" style="width: 300px; height: 200px" />
+                            <img src="@(item.Image)" style="width: 210px; height: 200px" />
 
                         </ul>
-
-                        <button data-id="@item.Id" class="passingID" data-toggle="modal" data-target="#myModal">Buy now</button>
+                        <button data-id="@item.Id" class="passingID" data-toggle="modal" data-target="#myModal" style="background-color:lightblue">Buy now</button>
 
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
                         @Html.ActionLink("Details", "Details", new { id = item.Id })
 
                     </div>
-                 
                 }
-
                 <script>
                     $(document).on("click", ".passingID", function () {
                         var ids = $(this).attr('data-id');
@@ -97,13 +113,13 @@
                 <form role="form" action="/Orders/Create" method="post">
                     <div class="form-group">
                         <label for="psw"> How many?</label>
-                        <input type="number" class="form-control" id="count" placeholder="" name="Count" /> 
+                        <input type="number" class="form-control" id="count" placeholder="" name="Count" />
                     </div>
                     @*<input type="hidden" id="namedose" name="IdMenu" value="6" />*@
                     <input hidden="hidden" type="number" id="IdMenu" name="IdMenu" value="" />
-                    <button class="btn btn-block">
+                    <button class="btn btn-block" onclick="myFunction1()">
                         Pay
-                        <span class="glyphicon glyphicon-ok"></span>
+                        @*<span class="glyphicon glyphicon-ok"></span>*@
                     </button>
                 </form>
             </div>
@@ -115,3 +131,17 @@
         </div>
     </div>
 </div>
+
+
+<div class="popup" onclick="myFunction1()">
+    <span class="popuptext" id="myPopup">We've got your details and we'll call you to get your payment. Thank You!</span>
+</div>
+
+<script>
+    // When the user clicks on div, open the popup
+    function myFunction1() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+
