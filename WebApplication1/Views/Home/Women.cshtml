@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<TippyToe.Models.Shoes>
 
+@using Microsoft.AspNetCore.Identity;
+
 @{
     ViewData["Title"] = "Women";
 }
@@ -11,38 +13,83 @@
 }
 
 
-<body>
+    <body>
 
 
-    <div class="container">
-        <div class="row">
-            </br>
-            <div class="col-sm-2">
-                <img alt="" class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="https://tpc.googlesyndication.com/simgad/13371837437458717208?sqp=4sqPyQQ7QjkqNxABHQAAtEIgASgBMAk4A0DwkwlYAWBfcAKAAQGIAQGdAQAAgD-oAQGwAYCt4gS4AV_FAS2ynT4&amp;rs=AOga4qlItT5UYapE2_NA5TXfOUQQgYd6Yw">
-            </div>
-            <div class="col-sm-10">
-                <div class="row">
+        <div class="container">
+            <div class="row">
+                </br>
+                <div class="col-sm-2">
+                    <img alt="" class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="https://tpc.googlesyndication.com/simgad/13371837437458717208?sqp=4sqPyQQ7QjkqNxABHQAAtEIgASgBMAk4A0DwkwlYAWBfcAKAAQGIAQGdAQAAgD-oAQGwAYCt4gS4AV_FAS2ynT4&amp;rs=AOga4qlItT5UYapE2_NA5TXfOUQQgYd6Yw">
+                </div>
+                <div class="col-sm-10">
+                    <div class="row">
 
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-sm-3" class="columns" padding-top='300dp'>
-                            <ul class="price" >
-                                <li class="header"  style="background:#e28ede"> @item.Style </li>
-                                <li class="grey"  style="background:#eda0e9"> @item.Price ₪ </li>
-                                <img src="@item.Image" style="width: 300px; height: 200px" />
-                                <li class="grey" style="background:#eda0e9"><a href="#" class="button">Add</a></li>
-                            </ul>
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-sm-3" class="columns" padding-top='300dp'>
+                                <ul class="price">
+                                    <li class="header" style="background:#e28ede"> @item.Style </li>
+                                    <li class="grey" style="background:#eda0e9"> @item.Price ₪ </li>
+                                    <img src="@item.Image" style="width: 300px; height: 200px" />
+                                </ul>
 
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
-                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                <button data-id="@item.Id" class="passingID" data-toggle="modal" data-target="#myModal">Buy now</button>
 
-                        </div>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
+                                @Html.ActionLink("Details", "Details", new { id = item.Id })
 
-                    }
+                            </div>
+                           
+                        }
 
+                        <script>
+                            $(document).on("click", ".passingID", function () {
+                                var ids = $(this).attr('data-id');
+                                $("#Id").val(ids);
+                            });
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><span class="glyphicon glyphicon-shopping-cart"></span> Tickets</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--iframe src="/Orders/Create" frameborder="0" width="100%" height="400px"></iframe-->
+                        <form role="form" action="/Orders/Create" method="post">
+                            <div class="form-group">
+                                <label for="psw"> How many?</label>
+                                <input type="number" class="form-control" id="count" placeholder="" name="Count" />
+                            </div>
+                            @*<input type="hidden" id="namedose" name="IdMenu" value="6" />*@
+                            <input hidden="hidden" type="number" id="IdMenu" name="IdMenu" value="" />
+                            <button class="btn btn-block">
+                                Pay
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>

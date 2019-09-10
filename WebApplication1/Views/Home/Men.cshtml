@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<TippyToe.Models.Shoes>
-
 @*@{TippyToe.Controllers.ShoesController s = new TippyToe.Controllers.ShoesController();}*@
+
+@using Microsoft.AspNetCore.Identity;
 
 @{
     ViewData["Title"] = "Men";
@@ -13,7 +14,7 @@
 
 <div class="container">
     <div class="row">
-        </br>
+        <br/>
         <div class="col-sm-2">
             <img alt="" class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="https://tpc.googlesyndication.com/daca_images/simgad/4515747431856294557">
         </div>
@@ -22,56 +23,95 @@
             <div class="row">
 
 
+                @*@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
-             *@*@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+        @foreach (var detail in s.HomeDetails)
+        {
+            @if (detail.BinaryPhoto != null)
+            {
+                var base64 = Convert.ToBase64String(detail.BinaryPhoto);
+                var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                <img src = '@imgsrc' style = "max-width:100px;max-height:100px" />
+                }
+             else {
+                <img src = "~/images/men/sport/sport4.jpg"
+                style = "max-width:100px;max-height:100px" />
+                @*this is default image in case ofnot inserted any image(file1) in index.cshtml *@
+               
+
+                @*@if (@detail.PathPhoto != null)
+          {
+            <img src = "@detail.PathPhoto" width = "100"  height = "100" />
+          }
+        else {
+            <img src = "~/images/men/sport/sport2.jpg"
+          style = "max-width:100px;max-height:100px" />
+          @*this is  default image in case ofnot inserted any image(file2) in index.cshtml *@
                 
 
-                @foreach (var detail in s.HomeDetails)
+                @foreach (var item in Model)
                 {
-                    @if (detail.BinaryPhoto != null)
-                    {
-                        var base64 = Convert.ToBase64String(detail.BinaryPhoto);
-                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
-                        <img src = '@imgsrc' style = "max-width:100px;max-height:100px" />
-                        }
-                     else {
-                        <img src = "~/images/men/sport/sport4.jpg" 
-                        style = "max-width:100px;max-height:100px" />
-                        @*this is default image in case ofnot inserted any image(file1) in index.cshtml *@
-                        }
+                   
+                    <div class="col-sm-3" class="columns" padding-top='300dp'>
+                        <ul class="price">
+                            <li class="header">    @item.Style  </li>
+                            <li class="grey">   @item.Price₪   </li>
+                            <img src="@item.Image" style="width: 300px; height: 200px" />
 
-                      @*@if (@detail.PathPhoto != null)
-                        {
-                          <img src = "@detail.PathPhoto" width = "100"  height = "100" />
-                        }
-                      else { 
-                          <img src = "~/images/men/sport/sport2.jpg"
-                        style = "max-width:100px;max-height:100px" />
-                        @*this is  default image in case ofnot inserted any image(file2) in index.cshtml *@
-                        } 
-            
-                        @foreach (var item in Model)
-                        {
-                            // @if (@item.Gender==Male)
-                            //{
-                            <div class="col-sm-3" class="columns" padding-top='300dp'>
-                                <ul class="price">
-                                    <li class="header">    @item.Style  </li>
-                                    <li class="grey">   @item.Price₪   </li>
+                        </ul>
 
-                                    <img src="@item.Image" style="width: 300px; height: 200px" />
+                        <button data-id="@item.Id" class="passingID" data-toggle="modal" data-target="#myModal">Buy now</button>
 
-                                    <li class="grey"><a href="#" class="button">Add</a></li>
-                                </ul>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
 
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
-                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    </div>
+                 
+                }
 
-                            </div>
-                            //}
-                        }
-                  </div>
-             </div>
-      </div>
- </div>
+                <script>
+                    $(document).on("click", ".passingID", function () {
+                        var ids = $(this).attr('data-id');
+                        $("#Id").val(ids);
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-shopping-cart"></span> Tickets</h4>
+            </div>
+            <div class="modal-body">
+                <!--iframe src="/Orders/Create" frameborder="0" width="100%" height="400px"></iframe-->
+                <form role="form" action="/Orders/Create" method="post">
+                    <div class="form-group">
+                        <label for="psw"> How many?</label>
+                        <input type="number" class="form-control" id="count" placeholder="" name="Count" /> 
+                    </div>
+                    @*<input type="hidden" id="namedose" name="IdMenu" value="6" />*@
+                    <input hidden="hidden" type="number" id="IdMenu" name="IdMenu" value="" />
+                    <button class="btn btn-block">
+                        Pay
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
