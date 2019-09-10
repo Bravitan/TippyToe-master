@@ -33,11 +33,14 @@
                                    new { @class = "form-control" })
                 <span asp-validation-for="Style" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
+                @*<label asp-for="Image" class="control-label"></label>*@
+                @Html.LabelFor(model =>model.Image,htmlAttributes: new { @class = "form-control" }) 
+                <input type="file" name="Image" class="form-control" required/>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Color" class="control-label"></label>
                 @Html.DropDownList("Color",
